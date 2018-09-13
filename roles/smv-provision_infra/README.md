@@ -32,3 +32,7 @@ AWS credentials are stored in a vars file to be easily encrypted as needed
 
     aws_access_key: "my_aws_access_key"
     aws_secret_key: "my_aws_secret_key"
+
+# Knows issues
+
+When adding the EC2 instances to the ELB the HealthCheck fails since the app is not yet started. Added ignore_errors to the task as a workaround

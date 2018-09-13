@@ -36,7 +36,7 @@
     force: false
   register: aws_key
 
-- name: Save generated key, in ssh home directory, but never overwrite
+- name: Save generated key in ssh home directory, but never overwrite
   copy:
     content: "{{ aws_key.key.private_key }}"
     dest: "~/.ssh/id_rsa_aws.{{ keypair_name }}.pem"
@@ -61,7 +61,7 @@
     wait: true
   register: ec2
 
-- name: Add new instance to host group
+- name: Add new instances to in-memory inventory
   add_host:
    hostname: "{{ item.public_dns_name }}"
    groups: svm_ec2
@@ -93,7 +93,6 @@
         load_balancer_port: 80
         instance_port: 80
     state: present
-  register: elb
 
 - name: add instances to ELB
   ignore_errors: yes
