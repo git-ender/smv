@@ -1,6 +1,6 @@
-# smv-provision_vm
+# smv-provision_infra
 
-This role is just and exercise. It deploy a VM with its own key and SG if not alredy present.
+This role is just and exercise. It provision VMs with their own keys and SG if not alredy present, it also create an ELB in front of the VMs
 
 # Requirements
 
@@ -26,7 +26,7 @@ See default/main.yml for example
 
 The default image is AMI Linux 2, and default region is AWS Ireland.
 
-The EC2 instances and the ELB should be attached to a common SG for network communication.
+The EC2 instances and the ELB should be attached to a common SG for network communication. This is not created by the role, it's usually the default SG for the VPC.
 
 AWS credentials are stored in a vars file to be easily encrypted as needed
 
