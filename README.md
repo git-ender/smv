@@ -14,8 +14,12 @@ Check the roles README for further details.
     - role: smv-deploy_vm
       tags: deploy_vm
 
-
   - hosts: my_ec2_hosts
     gather_facts: False
     roles:
     - role: smv-docker_app
+      tags: docker_app
+
+
+The first to roles must be runned in a single playbook since they share in-memory inventory file for the provisioned instances. 
+You should add the provisioned EC2 instances to you inventory file before running the 2nd playbook.

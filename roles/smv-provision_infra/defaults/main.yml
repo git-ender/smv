@@ -1,11 +1,10 @@
 ---
-keypair_name: smv-key-1
+keypair_name: smv-key
 instance_type: t2.micro
-aws_ec2_id: smv-ec2-1
-security_group_VM: smv-sg-vm-1
-security_group_ELB: smv-sg-elb-1
+security_group_VM: smv-sg-vm
+security_group_ELB: smv-sg-elb
 security_group_VPC: default
 ami_image: ami-0bdb1d6c15a40392c
 ec2_count: 2
-elb_name: smv-elb-1
+elb_name: smv-elb
 aws_region: eu-west-1
