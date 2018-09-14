@@ -1,0 +1,8 @@
+FROM anapsix/alpine-java:latest
+
+ENV app_name=helloworld
+
+RUN test -n "$app_name"
+RUN mkdir /opt/$app_name && wget http://78.137.98.23/task18/$app_name.war -O /opt/$app_name/$app_name.war
+
+CMD java -jar /opt/${app_name}/${app_name}.war
