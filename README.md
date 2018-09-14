@@ -1,6 +1,6 @@
 # SMV challenge
 
-This playbook is just and exercise. It provision a simple infrastructure on AWS, then install docker and other required packages and deploy a container within the EC2 instances.
+This playbook is just and exercise. It provision a simple infrastructure on AWS, then install docker and other required packages and deploy containers with a web app in the EC2 instances.
 
 Check the roles README for further details.
 
@@ -22,4 +22,4 @@ Check the roles README for further details.
 
 
 The first to roles must be runned in a single playbook since they share in-memory inventory file for the provisioned instances. 
-You should add the provisioned EC2 instances to you inventory file before running the 2nd playbook.
+You should add the provisioned EC2 instances to you inventory file before running the 2nd playbook. Instances could have been added to the inventory file but some more knowledge about how you manage your inventory is needed

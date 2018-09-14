@@ -1,4 +1,5 @@
 ---
+# The SG allows SSH from "cidr_ip" to your instances. Default is *any*
 - name: Ensure that SG with SSH inbound exist (for VM)
   ec2_group:
     aws_access_key: "{{ aws_access_key }}"
@@ -13,6 +14,7 @@
         cidr_ip: 0.0.0.0/0
         rule_desc: pass from any on port 22
 
+# The SG allows TCP on port 80 from "cidr_ip" to your ELB. Default is *any*
 - name: Ensure that SG with 80 inbound exist (for ELB)
   ec2_group:
     aws_access_key: "{{ aws_access_key }}"
@@ -44,7 +46,9 @@
     force: no
   when: aws_key.changed
 
-- name: Launch EC2 instance
+# "exact_count" of instances matching "count_tag" to be present.
+# For some reasone exact_count in incompatible with started so a stopped instance will not start
+- name: Launch EC2 instances
   ec2:
     aws_access_key: "{{ aws_access_key }}"  
     aws_secret_key: "{{ aws_secret_key }}"
@@ -61,11 +65,12 @@
     wait: true
   register: ec2
 
+# Register for other roles
 - name: Add new instances to in-memory inventory
   add_host:
-   hostname: "{{ item.public_dns_name }}"
-   groups: svm_ec2
-   ansible_ssh_private_key_file:  "~/.ssh/id_rsa_aws.{{ keypair_name }}.pem"
+    hostname: "{{ item.public_dns_name }}"
+    groups: svm_ec2
+    ansible_ssh_private_key_file:  "~/.ssh/id_rsa_aws.{{ keypair_name }}.pem"
   with_items: "{{ ec2.tagged_instances }}"
   when: ec2.changed
 
@@ -79,7 +84,7 @@
   with_items: "{{ ec2.tagged_instances }}"
   when: ec2.changed
 
-- name: create the ELB
+- name: Create the ELB
   ec2_elb_lb:
     aws_access_key: "{{ aws_access_key }}"  
     aws_secret_key: "{{ aws_secret_key }}"
@@ -94,7 +99,10 @@
         instance_port: 80
     state: present
 
-- name: add instances to ELB
+# FIXME
+# This task will fail cause the web app is not yet started and there is no way to disable or reanable HC on the ELB
+# As a future improvement the task should be runned after the deployment of the web app
+- name: Add instances to ELB
   ignore_errors: yes
   ec2_elb:
     aws_access_key: "{{ aws_access_key }}"  
