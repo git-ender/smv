@@ -1,0 +1,27 @@
+---
+# Keep published/exposed_ports commented if don't wat to use it
+containers:
+  "smv_docker_app":
+    image: "anapsix/alpine-java"
+    tag: "latest"
+    dockerfile_name: "dockerfile_app"
+    exposed_ports: "8080"
+    # published_ports:
+    ipv4: 172.16.10.10
+
+  "smv_docker_proxy":
+    image: "nginx"
+    tag: "latest"
+    dockerfile_name: "dockerfile_nginx"
+    #exposed_ports:
+    published_ports: "80:80"
+    ipv4: 172.16.10.11
+
+
+# Network section
+network_name: "SMV-Net"
+subnet_class: "172.16.10.0/28"
+
+# general vars
+dockerfile_path: "./roles/{{role_name}}/files/"
+temp_repo_path: "/tmp/smv/"
