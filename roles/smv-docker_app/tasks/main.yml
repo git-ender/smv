@@ -3,7 +3,7 @@
 - name: Clone repo to localhost
   local_action:
     module: git
-    repo: https://github.com/git-ender/smv.git
+    repo: "{{ git_repo }}" 
     dest: "{{ temp_repo_path }}"
   run_once: true
 

@@ -27,6 +27,7 @@ See default/main.yml for example. Ansible use a dict file for providing variable
     subnet_class: "172.16.10.0/28"
 
     # general vars
+    git_repo: "my_repo_on_github"
     dockerfile_path: "./roles/{{role_name}}/files/"
     temp_repo_path: "/tmp/smv/"
 

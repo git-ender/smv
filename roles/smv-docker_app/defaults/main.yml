@@ -23,5 +23,6 @@ network_name: "SMV-Net"
 subnet_class: "172.16.10.0/28"
 
 # general vars
+git_repo: "https://github.com/git-ender/smv.git"
 dockerfile_path: "./roles/{{role_name}}/files/"
 temp_repo_path: "/tmp/smv/"
