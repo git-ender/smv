@@ -33,4 +33,4 @@ See default/main.yml for example. Ansible use a dict file for providing variable
 Insert path of your dockerfile and a path for cloning repository on remote hosts
 
 # Known issues
-There is some issues with Ansible 2.6.x. See 
+There is some issues with Ansible 2.6.x. See https://github.com/ansible/ansible/issues/42162 
