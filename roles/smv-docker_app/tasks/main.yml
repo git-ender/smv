@@ -7,6 +7,11 @@
     dest: "{{ temp_repo_path }}"
   run_once: true
 
+- name: Ensure destination folder exist
+  file:
+   path: "{{ temp_repo_path }}/files" 
+   state: directory
+
 - name: Copy dockerfiles to remote hosts
   synchronize:
     src: "{{ temp_repo_path }}{{ dockerfile_path }}"
@@ -27,10 +32,13 @@
     state: present
   with_dict: "{{ containers }}"
 
+# working dir and env_file not used, added for future needings
 - name: Start all containers
   docker_container:
     name: "{{ item.key }}"
     image: "{{ item.value.image }}:{{ item.value.tag }}"
+    working_dir: "{{ item.value.working_dir|default(omit}}"
+    env_file: "{{ item.value.env_file_name|default(omit}}"
     exposed_ports: "{{ item.value.exposed_ports|default(omit) }}"
     published_ports: "{{ item.value.published_ports|default(omit) }}"
     state: started
