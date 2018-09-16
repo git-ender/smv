@@ -1,7 +1,7 @@
 ---
 # Keep published/exposed_ports commented if don't wat to use it
 containers:
-  "smv_docker_app":
+  "smv-docker-app":
     image: "anapsix/alpine-java"
     tag: "latest"
     dockerfile_name: "dockerfile_app"
@@ -9,7 +9,7 @@ containers:
     # published_ports:
     ipv4: 172.16.10.10
 
-  "smv_docker_proxy":
+  "smv-docker-proxy":
     image: "nginx"
     tag: "latest"
     dockerfile_name: "dockerfile_nginx"

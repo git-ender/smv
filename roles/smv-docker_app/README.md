@@ -14,7 +14,7 @@ This role is just and exercise. It builds docker images with a simple web app wi
 See default/main.yml for example. Ansible use a dict file for providing variables for all the containters. Ansible will fail if "*_ports" variables are empty so leave them commented if you do not want to use it (see tasks for details).
 
     containers:
-      "my_docker_container_name_1":
+      "my-docker-container-name-1":
         image: "anapsix/alpine-java"
         tag: "latest"
         dockerfile_name: "dockerfile_name_1"
